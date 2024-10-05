@@ -328,10 +328,10 @@ It seems we have found one, located at the offset `0x17fc96` from the libc base.
 
 Now, lets put the exploit together. We want to first return to `pop rdi; ret`, to place the address of `/bin/sh` in the `rdi` register, and then return to `system` to call `system("/bin/sh")` and spawn a shell. That means that the stack will need to look like
 
-| pop rdi     |
-| ----------- |
-| `"/bin/sh"` |
-| `system`    |
+- pop rdi
+- /bin/sh
+- system
+
 since this way the first `ret` from `main_loop` will pop the address of the `pop rdi` gadget from the top of the stack and jump to it, which will then pop the address of `/bin/sh` and place it in `rdi`, followed by the `ret` instruction popping the address of `system` and jumping to it.
 
 Since we already have an arbitrary write starting at the return address of `menu_loop` from our previous exploit, we can simply change the `written_data` to contain this ROP chain.
