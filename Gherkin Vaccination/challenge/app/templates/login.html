@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
+
+            .container {
+                text-align: center;
+            }
+
+            header {
+                margin-bottom: 20px;
+            }
+
+            .header-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .header-text {
+                text-align: right;
+                margin-right: 15px;
+            }
+
+            .header-container img {
+                width: 50px;
+            }
+
+            form {
+                display: inline-block;
+                text-align: left;
+            }
+
+            form div {
+                margin-bottom: 10px;
+            }
+
+            a {
+                display: block;
+                margin-top: 10px;
+                color: green;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header class="header-container">
+                <div class="header-text">
+                    <h1 style="color: darkgreen">GherkinStorage</h1>
+                    <p style="color: green"><i>We keep your data preserved</i></p>
+                </div>
+                <img src="/static/logo.png" />
+            </header>
+            <h2>Log In</h2> 
+            <form method="post" action="/login">
+                <div>
+                    <input name="username" type="text"/>
+                </div>
+                <div>
+                    <input name="password" type="password"/>
+                </div>
+                <div>
+                    <input type="submit" value="Log In"/>
+                </div>
+            </form>
+            {% if error %}
+            <div>
+                <p style="color: red">{{ error }}</p>
+            </div>
+            {% endif %}
+            <p><a href="/register">Register</a></p>
+        </div>
+    </body>
+</html>

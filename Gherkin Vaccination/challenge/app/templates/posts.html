@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center-aligns the content horizontally */
+                margin: 0;
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+                justify-content: center; /* Center-aligns the header content */
+                margin-bottom: 20px;
+                position: relative; /* Positions the logout button relative to the header */
+            }
+
+            .header-content {
+                display: flex;
+                flex-direction: column;
+                margin-right: 20px;
+                text-align: center; /* Center-aligns text within header-content */
+            }
+
+            header h1 {
+                margin: 0;
+                color: darkgreen;
+            }
+
+            .header-content p {
+                margin: 5px 0 0 0;
+                color: green;
+            }
+
+            header img {
+                width: 50px;
+            }
+
+            .logout-button {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                padding: 10px 20px;
+                background-color: darkgreen;
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 16px;
+            }
+
+            h2 {
+                text-align: center;
+                color: darkgreen;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            form input[type="text"] {
+                margin-bottom: 10px;
+                padding: 10px;
+                width: 100%;
+                max-width: 400px;
+                box-sizing: border-box;
+            }
+
+            form input[type="submit"] {
+                padding: 10px 20px;
+                background-color: darkgreen;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+
+            .entry {
+                text-align: left;
+                margin-bottom: 20px;
+            }
+
+            .entry h2 {
+                margin: 0;
+                color: darkgreen;
+            }
+
+            .entry p {
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div class="header-content">
+                    <h1>GherkinStorage</h1>
+                    <p><i>We keep your data preserved</i></p>
+                </div>
+                <img src="/static/logo.png" alt="Logo" />
+                <a href="/logout" class="logout-button">Log Out</a>
+            </header>
+            <div>
+                <h2>New Entry</h2>
+                <div>
+                    <form method="post" action="/post">
+                        <input type="text" name="title" placeholder="Entry Title"/>
+                        <input type="text" name="caption" placeholder="Data"/>
+                        <input type="submit" value="Save Entry"/>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <h2>Stored Entries</h2>
+                <div>
+                    {% for post in posts %}
+                    <div class="entry">
+                        <h2>{{ post.title }}</h2>
+                        <p>Posted: {{ post.posted }}</p>
+                        <p>{{ post.caption }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
